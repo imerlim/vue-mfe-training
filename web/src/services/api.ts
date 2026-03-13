@@ -1,17 +1,23 @@
 import axios from 'axios'
 
 const api = axios.create({
-    baseURL: 'https://api-quebrada-merlim.com', // Onde o seu Laravel/Nest estaria
-    timeout: 5000
+    baseURL: 'http://localhost:3000' // URL do seu NestJS
 })
 
-// O INTERCEPTOR: A "Alfândega" do seu App
+// Interceptor de REQUISIÇÃO: roda antes da chamada sair do Vue
+api.interceptors.request.use((config) => {
+    // Por enquanto apenas logamos, mas aqui entrará o JWT depois
+    console.log(`🚀 Fazendo chamada para: ${config.url}`)
+    return config
+})
+
+// Interceptor de RESPOSTA: roda quando o NestJS responde
 api.interceptors.response.use(
     (response) => response,
     (error) => {
-        if (error.response?.status === 401) {
-            console.error('Sessão expirada! Redirecionando...')
-            // Aqui você mandaria o usuário pro Login
+        // Se o NestJS retornar erro de validação (400), podemos tratar aqui
+        if (error.response?.status === 400) {
+            console.error('Erro de validação:', error.response.data.message)
         }
         return Promise.reject(error)
     }

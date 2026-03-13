@@ -6,12 +6,24 @@
     -webkit-font-smoothing: antialiased; // Deixa as fontes mais nítidas (Sênior cuida disso!)
     -moz-osx-font-smoothing: grayscale;
 }
+:root {
+    /* Use exatamente os mesmos valores que você usou na calculadora */
+    --bg-page: #121212;
+    --bg-card: #1e1e1e;
+    --bg-input: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent-color: #4f46e5;
+}
 
-body,
+body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    margin: 0;
+}
 html {
     width: 100%;
     min-height: 100vh;
-    background-color: #121212; // Cor de fundo global
     font-family: 'Inter', sans-serif; // Fonte padrão de fintechs
     overflow-x: hidden;
 }

@@ -10,6 +10,11 @@ const routes = [
         path: '/calculadora-juros-compostos',
         name: 'CalculadoraJurosCompostos',
         component: () => import('../views/CalculadoraJurosCompostos.vue')
+    },
+    {
+        path: '/register',
+        name: 'register',
+        component: () => import('@/views/auth/Register.vue')
     }
 ]
 

@@ -158,5 +158,27 @@ defineExpose({
         font-size: 0.875rem;
         margin-top: 0.25rem;
     }
+    input {
+        background-color: var(--bg-input);
+        color: var(--text-primary);
+        /* ... seu estilo atual ... */
+
+        // ESTE É O PULO DO GATO PARA O AUTOCOMPLETE
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus,
+        &:-webkit-autofill:active {
+            // Substitui o texto branco/preto do navegador pelo seu text-primary
+            -webkit-text-fill-color: var(--text-primary) !important;
+
+            // Substitui o fundo azul/amarelo do navegador pelo seu bg-input
+            // Usamos um box-shadow interno gigante para "pintar" o fundo
+            box-shadow: 0 0 0 100px var(--bg-input) inset !important;
+            -webkit-box-shadow: 0 0 0 100px var(--bg-input) inset !important;
+
+            // Remove a transição de cor de fundo que o Chrome tenta fazer
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    }
 }
 </style>
