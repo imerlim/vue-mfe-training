@@ -1,19 +1,21 @@
-// Cores Semânticas (O que a cor representa)
-$bg-primary: #121212;
-$bg-card: #1e1e1e;
+// src/styles/_variables.scss
+
+// Vincule as variáveis do Sass às variáveis do CSS global (:root)
+$bg-primary: var(--bg-page);
+$bg-card: var(--bg-card);
+$text-main: var(--text-primary);
+$text-muted: var(--text-secondary);
+$color-primary: var(--accent-color);
+
+// Mantenha as cores específicas que não estão no global
 $color-income: #00e676;
 $color-expense: #ff5252;
+$spacing-base: 1rem;
 
-// Tipografia e Texto
-$text-main: #ffffff;
-$text-muted: #b3b3b3;
+// Seus Mixins continuam iguais...
 
 // Cores de Marca (Brand Colors)
-$color-primary: #003366; // Um azul marinho clássico do setor financeiro
 $color-primary-hover: #003366; // Tom um pouco mais claro para o hover
-
-// Layout
-$spacing-base: 1rem;
 
 // Mixins (Sua ferramenta de produtividade)
 @mixin flex-center {

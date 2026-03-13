@@ -119,24 +119,31 @@ defineExpose({
     }
 
     .input-container {
-        :slotted(.text-base) {
-            margin-right: 6px;
-            color: $text-muted;
-        }
         display: flex;
         align-items: center;
-        background: color.adjust($bg-primary, $lightness: 7%);
-        border: 1px solid color.adjust($bg-primary, $lightness: 15%);
+        // Substituído color.adjust por variável global ou cor fixa
+        background: var(--bg-input);
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
         padding: 0 0.75rem;
-        transition: border-color 0.2s;
+        transition:
+            border-color 0.2s,
+            box-shadow 0.2s;
 
         &:focus-within {
-            border-color: $color-income;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
         }
 
         &.is-invalid {
             border-color: $color-expense;
+        }
+
+        :slotted(.input-prepend),
+        :slotted(.input-append) {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
         }
     }
 
@@ -161,22 +168,22 @@ defineExpose({
     input {
         background-color: var(--bg-input);
         color: var(--text-primary);
-        /* ... seu estilo atual ... */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 0.8rem;
+        border-radius: 8px;
+        width: 100%;
 
-        // ESTE É O PULO DO GATO PARA O AUTOCOMPLETE
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
-        &:-webkit-autofill:focus,
-        &:-webkit-autofill:active {
-            // Substitui o texto branco/preto do navegador pelo seu text-primary
+        &:-webkit-autofill:focus {
+            // Força o texto a ser branco (sua variável)
             -webkit-text-fill-color: var(--text-primary) !important;
 
-            // Substitui o fundo azul/amarelo do navegador pelo seu bg-input
-            // Usamos um box-shadow interno gigante para "pintar" o fundo
-            box-shadow: 0 0 0 100px var(--bg-input) inset !important;
-            -webkit-box-shadow: 0 0 0 100px var(--bg-input) inset !important;
+            // Cria uma sombra interna da cor do seu input para cobrir o azul do Chrome
+            box-shadow: 0 0 0px 1000px var(--bg-input) inset !important;
+            -webkit-box-shadow: 0 0 0px 1000px var(--bg-input) inset !important;
 
-            // Remove a transição de cor de fundo que o Chrome tenta fazer
+            // Impede que a cor mude depois de 1 segundo
             transition: background-color 5000s ease-in-out 0s;
         }
     }
